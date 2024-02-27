@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {Modal, type ModalSettings} from '@skeletonlabs/skeleton'
+  import {Modal} from '@skeletonlabs/skeleton'
   import { initializeStores, getModalStore } from '@skeletonlabs/skeleton';
 
   initializeStores();
@@ -18,26 +18,23 @@
 	}
 
 	function triggerSecondModal() {
-    //
+    //if wait time is longer (1000ms for instance) second modal will be shown
 		const waitOneMillisecondPromise = new Promise((resolve) => {
 			setTimeout(() => {
 				resolve('Done waiting for 1 millisecond');
-			}, 1000);
+			}, 1);
 		});
 
 		waitOneMillisecondPromise.then((result) => {
 			modalStore.trigger({
 				type: 'alert',
 				title: 'Triggered',
-				body: `${result}`,
-				buttonTextCancel: 'Close'
+				body: `${result}`
 			});
 		});
 	}
   
 </script>
-
-
   <Modal/>
-  <button class="btn-icon" on:click={triggerFirstModal}> Click</button>
+  <button class="btn-icon" on:click={triggerFirstModal}>Click to show first modal</button>
   
